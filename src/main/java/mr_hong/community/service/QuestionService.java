@@ -49,4 +49,33 @@ public class QuestionService {
 
         return pageDto;
     }
+
+    public PageDto listByuserId(Integer useId, Integer page, Integer size) {
+        PageDto pageDto = new PageDto();
+        Integer totalCount = questionMapper.countByUserId(useId);
+        pageDto.setPagination(totalCount,page,size);
+
+        if(page < 1){
+            page = 1;
+        }
+        if(page > pageDto.getTotalPage()){
+            page = pageDto.getTotalPage();
+        }
+
+        //分页实现,每一次都会从前端获取一个page,到ProfileController更新page查询。
+        Integer offset = size*(page-1);
+        List<Question> questions = questionMapper.listByUserId(useId,offset,size);
+        List<QuestionDto> questionDtoList = new ArrayList<>();
+        //将question里的每个属性对应到questionDto
+        for (Question question : questions) {
+            User user = userMapper.findById(question.getCreator());
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(question,questionDto);
+            questionDto.setUser(user);
+            questionDtoList.add(questionDto);
+        }
+        pageDto.setQuestions(questionDtoList);
+
+        return pageDto;
+    }
 }
