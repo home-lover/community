@@ -24,14 +24,19 @@ public class QuestionService {
 
         PageDto pageDto = new PageDto();
         Integer totalCount = questionMapper.count();
-        pageDto.setPagination(totalCount,page,size);
-
+        Integer totalPage;
+        if(totalCount % size == 0){
+            totalPage = totalCount/size;
+        }else{
+            totalPage = totalCount/size +1;
+        }
         if(page < 1){
             page = 1;
         }
-        if(page > pageDto.getTotalPage()){
-            page = pageDto.getTotalPage();
+        if(page > totalPage){
+            page = totalPage;
         }
+        pageDto.setPagination(totalPage,page);
 
         //分页实现,每一次都会从前端获取一个page,到HelloController更新page查询。
         Integer offset = size*(page-1);
@@ -50,17 +55,23 @@ public class QuestionService {
         return pageDto;
     }
 
-    public PageDto listByuserId(Integer useId, Integer page, Integer size) {
+    public PageDto listByUserId(Integer useId, Integer page, Integer size) {
         PageDto pageDto = new PageDto();
         Integer totalCount = questionMapper.countByUserId(useId);
-        pageDto.setPagination(totalCount,page,size);
 
+        Integer totalPage;
+        if(totalCount % size == 0){
+            totalPage = totalCount/size;
+        }else{
+            totalPage = totalCount/size +1;
+        }
         if(page < 1){
             page = 1;
         }
-        if(page > pageDto.getTotalPage()){
-            page = pageDto.getTotalPage();
+        if(page > totalPage){
+            page = totalPage;
         }
+        pageDto.setPagination(totalPage,page);
 
         //分页实现,每一次都会从前端获取一个page,到ProfileController更新page查询。
         Integer offset = size*(page-1);

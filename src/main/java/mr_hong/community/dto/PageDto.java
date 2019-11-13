@@ -12,6 +12,7 @@ public class PageDto {
     private boolean showEndPage;
     private Integer currentPage;
     private List<Integer> pages = new ArrayList<>();
+    private Integer totalPage;
 
     public Integer getTotalPage() {
         return totalPage;
@@ -21,7 +22,6 @@ public class PageDto {
         this.totalPage = totalPage;
     }
 
-    private Integer totalPage;
 
     public List<QuestionDto> getQuestions() {
         return questions;
@@ -87,13 +87,10 @@ public class PageDto {
         this.pages = pages;
     }
 
-    public void setPagination(Integer totalCount, Integer page, Integer size) {
-        if(totalCount % size == 0){
-            totalPage = totalCount/size;
-        }else{
-            totalPage = totalCount/size +1;
-        }
-
+    public void setPagination(Integer totalPage, Integer page) {
+        this.totalPage = totalPage;
+        this.currentPage = page;
+        pages.add(page);
         if(page < 1){
             page = 1;
         }
@@ -101,8 +98,7 @@ public class PageDto {
             page = totalPage;
         }
         //做上一页和下一页的时候要以当前页为基准，所以需要currentPage
-        currentPage=page;
-        pages.add(page);
+
         for(int i=1;i<=3;i++){
             if(page - i >0){
                 pages.add(0,page-i); //将page分成0、1两部分，一个从前加，一个从后面加。
