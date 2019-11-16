@@ -89,4 +89,13 @@ public class QuestionService {
 
         return pageDto;
     }
+
+    public QuestionDto getById(Integer id) {
+        Question question = questionMapper.getQuestionById(id);
+        User user = userMapper.findById(question.getCreator());
+        QuestionDto questionDto = new QuestionDto();
+        BeanUtils.copyProperties(question,questionDto);
+        questionDto.setUser(user);
+        return questionDto;
+    }
 }
