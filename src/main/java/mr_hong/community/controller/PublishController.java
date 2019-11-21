@@ -63,7 +63,6 @@ public class PublishController {
             return "/publish";
         }
 
-
         Question question = new Question();
         question.setTitle(title);
         question.setDescription(description);

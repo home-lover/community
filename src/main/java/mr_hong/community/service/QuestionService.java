@@ -2,6 +2,8 @@ package mr_hong.community.service;
 
 import mr_hong.community.dto.PageDto;
 import mr_hong.community.dto.QuestionDto;
+import mr_hong.community.exception.CustomizeException;
+import mr_hong.community.exception.ErrorCode;
 import mr_hong.community.mapper.QuestionMapper;
 import mr_hong.community.mapper.UserMapper;
 import mr_hong.community.model.Question;
@@ -92,6 +94,9 @@ public class QuestionService {
 
     public QuestionDto getById(Integer id) {
         Question question = questionMapper.getQuestionById(id);
+        if(question == null){
+            throw new CustomizeException(ErrorCode.QUESTION_NOT_FOUND);
+        }
         User user = userMapper.findById(question.getCreator());
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(question,questionDto);
@@ -106,7 +111,10 @@ public class QuestionService {
             questionMapper.Create(question);
         }else{
             question.setGmtModified(question.getGmtCreate());
-            questionMapper.update(question);
+            Integer updated = questionMapper.update(question);
+            if(updated != 1){
+                throw new CustomizeException(ErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
