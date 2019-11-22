@@ -9,5 +9,13 @@ https://www.thymeleaf.org/doc
 
 
 ## 工具
-1.git官网下载  
+1.git官网下载（IDEA控制台输入git命令） 
+ 
+
+## 注意
+1.IDEA错误信息显示，需要注释CustomizeErrorController和ControllerAdvice  
+
+
+
+
 

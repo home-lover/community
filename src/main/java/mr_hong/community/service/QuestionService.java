@@ -94,9 +94,9 @@ public class QuestionService {
 
     public QuestionDto getById(Integer id) {
         Question question = questionMapper.getQuestionById(id);
-        if(question == null){
+        /*if(question == null){
             throw new CustomizeException(ErrorCode.QUESTION_NOT_FOUND);
-        }
+        }*/
         User user = userMapper.findById(question.getCreator());
         QuestionDto questionDto = new QuestionDto();
         BeanUtils.copyProperties(question,questionDto);
@@ -112,9 +112,15 @@ public class QuestionService {
         }else{
             question.setGmtModified(question.getGmtCreate());
             Integer updated = questionMapper.update(question);
-            if(updated != 1){
+            /*if(updated != 1){
                 throw new CustomizeException(ErrorCode.QUESTION_NOT_FOUND);
-            }
+            }*/
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = questionMapper.getQuestionById(id);
+        question.setViewCount(1);
+        questionMapper.update(question);
     }
 }

@@ -11,7 +11,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 
 
-@ControllerAdvice
+
+/*@ControllerAdvice
 public class CustomizeExceptionHandle {
     @ExceptionHandler(Exception.class)
     ModelAndView handle(HttpServletRequest request,Throwable e,Model model){
@@ -19,7 +20,7 @@ public class CustomizeExceptionHandle {
         if(e instanceof CustomizeException){
             model.addAttribute("message",e.getMessage());
         }else{
-            model.addAttribute("message","服务已经冒烟了！稍后再试试~");
+            model.addAttribute("message","服务已经冒烟了！稍后再试试~~");
         }
         return new ModelAndView("error");
     }
@@ -30,4 +31,5 @@ public class CustomizeExceptionHandle {
         }
         return HttpStatus.valueOf(statusCode);
      }
-}
+}*/
+

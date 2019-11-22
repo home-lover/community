@@ -12,7 +12,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import java.awt.*;
 
-@Controller
+
+/*@Controller
 @RequestMapping("${server.error.path:${error.path:/error}}")
 public class CustomizeErrorController implements ErrorController {
     @Override
@@ -42,4 +43,5 @@ public class CustomizeErrorController implements ErrorController {
         }
 
     }
-}
+}*/
+

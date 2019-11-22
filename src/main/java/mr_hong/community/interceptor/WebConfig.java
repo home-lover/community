@@ -13,10 +13,11 @@ import java.util.List;
 @Configuration
 //@EnableWebMvc千万不能加
 public class WebConfig implements WebMvcConfigurer {
-    private static final List<String> EXCLUDE_PATH = Arrays.asList("/","/css/**","/js/**","/img/**","/media/**","/vendors/**");
+    //private static final List<String> EXCLUDE_PATH = Arrays.asList("/","/css/**","/js/**","/img/**","/media/**","/vendors/**");
     @Autowired
     private SessionInterceptor sessionInterceptor;
     public void addInterceptors(InterceptorRegistry registry){
-        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns(EXCLUDE_PATH);
+        registry.addInterceptor(sessionInterceptor).addPathPatterns("/**");
+        //registry.addInterceptor(sessionInterceptor).addPathPatterns("/**").excludePathPatterns(EXCLUDE_PATH);
     }
 }
