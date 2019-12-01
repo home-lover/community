@@ -106,6 +106,9 @@ public class QuestionService {
 
     public void createOrUpdate(Question question) {
         if(question.getId() == null){
+            question.setViewCount(0);
+            question.setCommentCount(0);
+            question.setLikeCount(0);
             question.setGmtCreate(System.currentTimeMillis());
             question.setGmtModified(question.getGmtCreate());
             questionMapper.Create(question);
@@ -121,6 +124,6 @@ public class QuestionService {
     public void incView(Integer id) {
         Question question = questionMapper.getQuestionById(id);
         question.setViewCount(1);
-        questionMapper.update(question);
+        questionMapper.updateViewCount(question);
     }
 }

@@ -25,6 +25,12 @@ public interface QuestionMapper {
     @Select("select * from question where id = #{id}")
     Question getQuestionById(Integer id);
 
-    @Update("update question set title = #{title},description = #{description},gmt_modified = #{gmtModified},tag = #{tag},view_count = view_count + #{viewCount},comment_count = #{commentCount} where id = #{id}")
+    @Update("update question set title = #{title},description = #{description},gmt_modified = #{gmtModified},tag = #{tag},view_count = #{viewCount},comment_count = #{commentCount} where id = #{id}")
     Integer update(Question question);
+
+    @Update("update question set view_count = view_count + #{viewCount} where id = #{id}")
+    void updateViewCount(Question question);
+
+    @Update("update question set comment_count = comment_count + 1 where id = #{id}")
+    void updateCommentCount(Integer parentId);
 }
