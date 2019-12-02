@@ -39,7 +39,9 @@ public class CommentController {
         comment.setGmtModified(System.currentTimeMillis());
         //comment.setCommentator(1024);
         comment.setCommentator(user.getId());
-        commentService.Insert(comment);
+        if(commentService.Insert(comment)==false){
+            return ResultDto.errorOf(2003,"问题不存在了，换一个吧！");
+        }
         return ResultDto.okOf();
     }
 }
