@@ -1,13 +1,20 @@
 package mr_hong.community.service;
 
+import mr_hong.community.dto.CommentDto;
 import mr_hong.community.enums.CommentTypeEnum;
 import mr_hong.community.mapper.CommentMapper;
 import mr_hong.community.mapper.QuestionMapper;
+import mr_hong.community.mapper.UserMapper;
 import mr_hong.community.model.Comment;
 import mr_hong.community.model.Question;
+import mr_hong.community.model.User;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class CommentService {
@@ -15,6 +22,8 @@ public class CommentService {
     private CommentMapper commentMapper;
     @Autowired
     private QuestionMapper questionMapper;
+    @Autowired
+    private UserMapper userMapper;
 
     @Transactional   //事务
     public boolean Insert(Comment comment) {
@@ -42,5 +51,20 @@ public class CommentService {
             return false;
         }
         return true;
+    }
+
+    public List<CommentDto> ListByQuestionId(Integer id) {
+        List<Comment> comments = commentMapper.listByParentId(id);
+        List<CommentDto> commentDtos = new ArrayList<>();
+        for(Comment comment:comments){
+            User user = userMapper.findById(comment.getCommentator());
+            CommentDto commentDto = new CommentDto();
+            if(comment.getType() == CommentTypeEnum.QUESTION.getType()){
+                BeanUtils.copyProperties(comment,commentDto);
+                commentDto.setUser(user);
+                commentDtos.add(commentDto);
+            }
+        }
+        return commentDtos;
     }
 }

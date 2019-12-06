@@ -14,7 +14,15 @@ function post() {
             if(response.code == 200){
                 $("#comment_section").hide();
             }else {
-                alert(response.message);
+                if(response.code == 2002){
+                    var accept = window.confirm(response.message);
+                    if(accept){
+                        window.open("https://github.com/login/oauth/authorize?client_id=Iv1.6d8e3c5f95e3d25a&redirect_uri=http://localhost:8080/callback&scope=user&state=1");
+                        window.localStorage.setItem("closable",true);
+                    }
+                }else{
+                    alert(response.message);
+                }
             }
             console.log(response);
         } ,

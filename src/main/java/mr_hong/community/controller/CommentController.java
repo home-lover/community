@@ -1,6 +1,6 @@
 package mr_hong.community.controller;
 
-import mr_hong.community.dto.CommentDto;
+import mr_hong.community.dto.CommentCreateDto;
 import mr_hong.community.dto.ResultDto;
 import mr_hong.community.mapper.CommentMapper;
 import mr_hong.community.model.Comment;
@@ -14,8 +14,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.HashMap;
-import java.util.Map;
 
 @Controller
 public class CommentController {
@@ -26,15 +24,15 @@ public class CommentController {
 
     @ResponseBody      //@ResponseBody：能将后台的信息转化成json格式发送到前端。@RequestBody：能自动接收到前端json格式数据，并反序列化到对象中
     @RequestMapping (value = "/comment",method = RequestMethod.POST)
-    public Object post(@RequestBody CommentDto commentDto, HttpServletRequest request){
+    public Object post(@RequestBody CommentCreateDto commentCreateDto, HttpServletRequest request){
         User user = (User) request.getSession().getAttribute("user");
         if(user == null){
             return ResultDto.errorOf(2002,"请先登录再评论！");
         }
         Comment comment = new Comment();
-        comment.setParentId(commentDto.getParentId());
-        comment.setContent(commentDto.getContent());
-        comment.setType(commentDto.getType());
+        comment.setParentId(commentCreateDto.getParentId());
+        comment.setContent(commentCreateDto.getContent());
+        comment.setType(commentCreateDto.getType());
         comment.setGmtCreate(System.currentTimeMillis());
         comment.setGmtModified(System.currentTimeMillis());
         //comment.setCommentator(1024);

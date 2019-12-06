@@ -29,8 +29,8 @@ body{
     margin: 50px;
 }
 .media-body {
-    padding-top: 10px;
-}
+     padding-top: 10px;
+ }
 .comment{
     margin: 10px 0;
 }
@@ -38,4 +38,25 @@ body{
     float: right;
     margin-bottom: 10px;
 }
-
+.comment-sp{
+    margin-top: 0;
+}
+.comment-menu{
+    display: block;
+    margin-bottom: 15px;
+    margin-top: 6px;
+    color: #999;
+}
+.comment-menu .icon{
+    font-size: 15px;
+    margin-right: 6px;
+    cursor: pointer;
+}
+.comment-menu .icon:hover{
+    color: #499ef3;
+}
+.comment-sample{
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    border-bottom: 1px solid #eee;
+}
