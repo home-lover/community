@@ -25,6 +25,9 @@ body{
     color:#999;
     font-size: 13px;
 }
+.question-title{
+    margin-top: 25px;
+}
 .jumbotron{
     margin: 50px;
 }
@@ -51,6 +54,9 @@ body{
     font-size: 15px;
     margin-right: 6px;
     cursor: pointer;
+}
+.comment-menu .active{
+    color: #499ef3;
 }
 .comment-menu .icon:hover{
     color: #499ef3;

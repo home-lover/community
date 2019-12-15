@@ -4,7 +4,7 @@ package mr_hong.community.dto;
 import mr_hong.community.model.User;
 
 public class CommentDto {
-    private Long id;
+    private Integer id;
     private Integer parentId;
     private Integer type;
     private Integer commentator;
@@ -14,11 +14,11 @@ public class CommentDto {
     private String content;
     private User user;
 
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

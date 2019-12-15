@@ -15,6 +15,6 @@ public interface CommentMapper {
     @Select("select * from comment where parent_id = #{parentId}")
     Comment findByParentId(Integer parentId);
 
-    @Select("select * from comment where parent_id = #{parentId}")
+    @Select("select * from comment where parent_id = #{parentId} order by gmt_create desc")
     List<Comment> listByParentId(Integer id);
 }
