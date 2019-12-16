@@ -8,6 +8,7 @@ public class CommentDto {
     private Integer parentId;
     private Integer type;
     private Integer commentator;
+    private Integer commentCount;
     private Long gmtModified;
     private Long gmtCreate;
     private Long likeCount;
@@ -44,6 +45,14 @@ public class CommentDto {
 
     public void setCommentator(Integer commentator) {
         this.commentator = commentator;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
     public Long getGmtModified() {

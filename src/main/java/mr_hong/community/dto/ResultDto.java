@@ -1,8 +1,9 @@
 package mr_hong.community.dto;
 
-public class ResultDto {
+public class ResultDto<T> {
     private Integer code;
     private String message;
+    private T data;
 
     public Integer getCode() {
         return code;
@@ -20,7 +21,15 @@ public class ResultDto {
         this.message = message;
     }
 
-    public static ResultDto errorOf(Integer code,String message){
+    public T getData() {
+        return data;
+    }
+
+    public void setData(T data) {
+        this.data = data;
+    }
+
+    public static ResultDto errorOf(Integer code, String message){
         ResultDto resultDto = new ResultDto();
         resultDto.setCode(code);
         resultDto.setMessage(message);
@@ -30,6 +39,13 @@ public class ResultDto {
         ResultDto resultDto = new ResultDto();
         resultDto.setCode(200);
         resultDto.setMessage("请求成功！");
+        return resultDto;
+    }
+    public static <T> ResultDto okOf(T t){
+        ResultDto resultDto = new ResultDto();
+        resultDto.setCode(200);
+        resultDto.setMessage("请求成功！");
+        resultDto.setData(t);
         return resultDto;
     }
 }

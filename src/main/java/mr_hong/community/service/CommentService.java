@@ -33,7 +33,8 @@ public class CommentService {
                 Comment dbComment = commentMapper.findByParentId(comment.getParentId());
                 if(dbComment != null){
                     commentMapper.Insert(comment);
-                    questionMapper.updateCommentCount(comment.getParentId());
+                    dbComment.setCommentCount(1);
+                    commentMapper.updateCommentCount(dbComment);
                 }else {
                     return false;
                 }
@@ -42,7 +43,8 @@ public class CommentService {
                 Question question = questionMapper.getQuestionById(comment.getParentId());
                 if (question != null){
                     commentMapper.Insert(comment);
-                    questionMapper.updateCommentCount(comment.getParentId());
+                    question.setCommentCount(1);
+                    questionMapper.updateCommentCount(question);
                 }else {
                     return false;
                 }
@@ -60,6 +62,21 @@ public class CommentService {
             User user = userMapper.findById(comment.getCommentator());
             CommentDto commentDto = new CommentDto();
             if(comment.getType() == CommentTypeEnum.QUESTION.getType()){
+                BeanUtils.copyProperties(comment,commentDto);
+                commentDto.setUser(user);
+                commentDtos.add(commentDto);
+            }
+        }
+        return commentDtos;
+    }
+
+    public List<CommentDto> ListByTargetId(Integer id) {
+        List<Comment> comments = commentMapper.listByParentId(id);
+        List<CommentDto> commentDtos = new ArrayList<>();
+        for(Comment comment:comments){
+            User user = userMapper.findById(comment.getCommentator());
+            CommentDto commentDto = new CommentDto();
+            if(comment.getType() == CommentTypeEnum.COMMENT.getType()){
                 BeanUtils.copyProperties(comment,commentDto);
                 commentDto.setUser(user);
                 commentDtos.add(commentDto);

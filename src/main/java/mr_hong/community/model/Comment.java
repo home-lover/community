@@ -8,6 +8,7 @@ public class Comment {
     private Long gmtCreate;
     private Long gmtModified;
     private Integer likeCount;
+    private Integer commentCount;
     private String content;
 
     public Integer getId() {
@@ -40,6 +41,14 @@ public class Comment {
 
     public void setCommentator(Integer commentator) {
         this.commentator = commentator;
+    }
+
+    public Integer getCommentCount() {
+        return commentCount;
+    }
+
+    public void setCommentCount(Integer commentCount) {
+        this.commentCount = commentCount;
     }
 
     public Long getGmtCreate() {
