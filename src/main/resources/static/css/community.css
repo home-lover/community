@@ -76,3 +76,24 @@ body{
 .sub-comments .btn{
     margin: 10px 0;
 }
+.label-info{
+    float: left;
+    margin-left: 10px;
+}
+.question-related{
+    padding-left: 0;
+    list-style: none;
+}
+.question-related li{
+    margin-bottom: 11px;
+}
+.img-thumbnail{
+    height: 200px;
+    width: 200px;
+}
+.second-count{
+    font-size: 9px;
+    margin-left: 18px;
+    margin-top: -14px;
+    display: block;
+}

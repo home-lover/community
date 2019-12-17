@@ -8,12 +8,16 @@ import mr_hong.community.mapper.QuestionMapper;
 import mr_hong.community.mapper.UserMapper;
 import mr_hong.community.model.Question;
 import mr_hong.community.model.User;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service                     //用于组装question和user：中间层
 public class QuestionService {
@@ -125,5 +129,20 @@ public class QuestionService {
         Question question = questionMapper.getQuestionById(id);
         question.setViewCount(1);
         questionMapper.updateViewCount(question);
+    }
+
+    public List<QuestionDto> selectRelated(QuestionDto queryDto) {
+        String []tags = StringUtils.split(queryDto.getTag(),",");
+        String regexpTags = Arrays.stream(tags).collect(Collectors.joining("|"));
+        Question question = new Question();
+        question.setId(queryDto.getId());
+        question.setTag(regexpTags);
+        List<Question> questions = questionMapper.selectRelated(question);
+        List<QuestionDto> questionDtos = questions.stream().map(q->{
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(q,questionDto);
+            return questionDto;
+        }).collect(Collectors.toList());
+        return questionDtos;
     }
 }
