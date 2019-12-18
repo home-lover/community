@@ -92,7 +92,6 @@ public class QuestionService {
             questionDtoList.add(questionDto);
         }
         pageDto.setQuestions(questionDtoList);
-
         return pageDto;
     }
 

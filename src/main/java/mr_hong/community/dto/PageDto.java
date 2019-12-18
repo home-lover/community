@@ -6,6 +6,7 @@ import java.util.List;
 
 public class PageDto {
     private List<QuestionDto> questions;
+    private List<NotificationDto> notifications;
     private boolean showPrevious;
     private boolean showFirstPage;
     private boolean showNext;
@@ -13,6 +14,14 @@ public class PageDto {
     private Integer currentPage;
     private List<Integer> pages = new ArrayList<>();
     private Integer totalPage;
+
+    public List<NotificationDto> getNotifications() {
+        return notifications;
+    }
+
+    public void setNotifications(List<NotificationDto> notifications) {
+        this.notifications = notifications;
+    }
 
     public Integer getTotalPage() {
         return totalPage;
