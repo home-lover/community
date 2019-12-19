@@ -82,4 +82,5 @@ public class Notification {
     public void setNotifyTitle(String notifyTitle) {
         this.notifyTitle = notifyTitle;
     }
+
 }

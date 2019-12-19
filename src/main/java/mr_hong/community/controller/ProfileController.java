@@ -42,9 +42,6 @@ public class ProfileController {
             model.addAttribute("sectionName","最新回复");
             PageDto pageDto = notificationService.listByUserId(user.getId(),page,size);
             model.addAttribute("pagination",pageDto);
-            Integer unreadCount = notificationService.unreadCount(user.getId());
-            model.addAttribute("unreadCount",unreadCount);
-
         }
 
 

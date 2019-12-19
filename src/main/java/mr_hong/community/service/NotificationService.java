@@ -3,6 +3,7 @@ package mr_hong.community.service;
 import mr_hong.community.dto.NotificationDto;
 import mr_hong.community.dto.PageDto;
 import mr_hong.community.dto.QuestionDto;
+import mr_hong.community.enums.NotificationStatusEnum;
 import mr_hong.community.enums.NotificationTypeEnum;
 import mr_hong.community.mapper.NotificationMapper;
 import mr_hong.community.mapper.UserMapper;
@@ -50,7 +51,7 @@ public class NotificationService {
             notificationDto.setNotifyTitle(notification.getNotifyTitle());
             User user = userMapper.findById(notification.getNotifier());
             notificationDto.setNotifier(user);
-            notificationDto.setType(NotificationTypeEnum.nameOfType(notification.getType()));
+            notificationDto.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
             notificationDtoList.add(notificationDto);
         }
         pageDto.setNotifications(notificationDtoList);
@@ -60,5 +61,15 @@ public class NotificationService {
     public Integer unreadCount(Integer receiveId) {
         Integer unreadCount = notificationMapper.unreadCount(receiveId);
         return unreadCount;
+    }
+
+    public NotificationDto read(Integer id, User user) {
+        NotificationDto notificationDto = new NotificationDto();
+        Notification notification = notificationMapper.findByNotificationId(id);
+        notification.setStatus(NotificationStatusEnum.READ.getStatus());
+        notificationMapper.update(notification);
+        BeanUtils.copyProperties(notification,notificationDto);
+        notificationDto.setTypeName(NotificationTypeEnum.nameOfType(notification.getType()));
+        return notificationDto;
     }
 }

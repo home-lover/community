@@ -8,7 +8,9 @@ public class NotificationDto {
     private Integer status;
     private User notifier;
     private String notifyTitle;
-    private String type;
+    private String typeName;
+    private Integer outerId;
+    private Integer type;
 
     public Integer getId() {
         return id;
@@ -50,11 +52,27 @@ public class NotificationDto {
         this.notifyTitle = notifyTitle;
     }
 
-    public String getType() {
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
+
+    public Integer getOuterId() {
+        return outerId;
+    }
+
+    public void setOuterId(Integer outerId) {
+        this.outerId = outerId;
+    }
+
+    public Integer getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(Integer type) {
         this.type = type;
     }
 }

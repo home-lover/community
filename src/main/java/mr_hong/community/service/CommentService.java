@@ -42,7 +42,7 @@ public class CommentService {
                     dbComment.setCommentCount(1);
                     commentMapper.updateCommentCount(dbComment);
                     Question question = questionMapper.getQuestionById(dbComment.getParentId());
-                    createNotify(comment,dbComment.getCommentator(),commentator.getName(),question.getTitle(), NotificationTypeEnum.REPLY_COMMENT);
+                    createNotify(comment,dbComment.getCommentator(),commentator.getName(),question.getTitle(), NotificationTypeEnum.REPLY_COMMENT, question.getId());
                 }else {
                     return false;
                 }
@@ -53,7 +53,7 @@ public class CommentService {
                     commentMapper.Insert(comment);
                     question.setCommentCount(1);
                     questionMapper.updateCommentCount(question);
-                    createNotify(comment, question.getCreator(),commentator.getName(),question.getTitle(), NotificationTypeEnum.REPLY_QUESTION);
+                    createNotify(comment, question.getCreator(),commentator.getName(),question.getTitle(), NotificationTypeEnum.REPLY_QUESTION, question.getId());
                 }else {
                     return false;
                 }
@@ -64,12 +64,12 @@ public class CommentService {
         return true;
     }
 
-    private void createNotify(Comment comment, Integer commentator,String notifyName,String notifyTitle, NotificationTypeEnum notificationTypeEnum) {
+    private void createNotify(Comment comment, Integer commentator, String notifyName, String notifyTitle, NotificationTypeEnum notificationTypeEnum, Integer outerId) {
         Notification notification = new Notification();
         notification.setType(notificationTypeEnum.getType());
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setNotifier(comment.getCommentator());
-        notification.setOuterId(comment.getParentId());
+        notification.setOuterId(outerId);
         notification.setReceiver(commentator);
         notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
         notification.setNotifierName(notifyName);

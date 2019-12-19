@@ -21,7 +21,7 @@
             <h2><span th:text="${sectionName}"></span></h2>
             <hr>
             <!--我的问题展示-->
-            <div class="col-lg-3  col-md-12  col-sm-12  col-xs-12" th:if="${section == 'questions'}">
+            <div class="col-lg-9  col-md-12  col-sm-12  col-xs-12" th:if="${section == 'questions'}">
                 <div class="media" th:each="question : ${pagination.questions}">
                     <div class="media-left">
                         <a href="#">
@@ -75,18 +75,20 @@
                 </nav>
             </div>
             <!--我的回复展示-->
-            <div class="col-lg-3  col-md-12  col-sm-12  col-xs-12" th:if="${section == 'replies'}">
+            <div class="col-lg-9  col-md-12  col-sm-12  col-xs-12" th:if="${section == 'replies'}">
                 <div class="media" th:each="notification : ${pagination.notifications}">
                     <div class="media-body">
                         <h5 class="media-heading">
                             <span th:text="${notification.getNotifier().getName()}"></span>&nbsp;
-                            <span th:text="${notification.getType()}"></span>&nbsp;
+                            <span th:text="${notification.getTypeName()}"></span>&nbsp;
                             <span>
-                                <a th:href="@{'/question/'+${notification.id}}"
+                                <a th:href="@{'/notification/'+${notification.id}}"
                                    th:text="${notification.getNotifyTitle()}">
                                 </a>
                             </span>
+                            <span class="label label-danger" th:if="${notification.status == 0}">未读</span>
                         </h5>
+                        <span class="text-desc" th:text="${#dates.format(notification.gmtCreate,'yyyy-MM-dd HH:mm')}"></span>
                     </div>
                 </div>
                 <nav aria-label="Page navigation">
@@ -128,7 +130,7 @@
                 </a>
                 <a href="/profile/replies" th:class="${section == 'replies'}?'active list-group-item':'list-group-item'">
                     最新回复
-                    <span class="badge" th:text="${unreadCount}"></span>
+                    <span class="badge" th:text="${session.unreadCount}"></span>
                 </a>
             </div>
         </div>
