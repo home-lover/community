@@ -48,7 +48,7 @@ public class CommentController {
         return ResultDto.okOf();
     }
 
-    @ResponseBody      //@ResponseBody：能将后台的信息转化成json格式发送到前端。@RequestBody：能自动接收到前端json格式数据，并反序列化到对象中
+    @ResponseBody
         @RequestMapping (value = "/comment/{id}",method = RequestMethod.GET)
     public ResultDto<List<CommentDto>> comments(@PathVariable(name="id") Integer id){
         List<CommentDto> commentDtos = commentService.ListByTargetId(id);

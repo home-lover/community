@@ -8,8 +8,10 @@
     <link rel="stylesheet" href="/css/bootstrap-theme.css">
     <link rel="stylesheet" href="/css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="/css/community.css">
+    <link rel="stylesheet" href="/css/editormd.min.css">
     <script src="/js/community.js" type="application/javascript"></script>
     <script src="/js/jquery-3.4.1.min.js"></script>
+    <script src="/js/editormd.min.js"></script>
     <script src="/js/bootstrap.min.js" type="application/javascript"></script>
 
 
@@ -30,10 +32,27 @@
                 </div>
 
                 <!--问题补充-->
-                <div class="form-group">
+                <div class="form-group" id="question-editor">
                     <label for="title">问题补充 (必填，请参照右侧提示):</label>
-                    <textarea class="form-control" id="description" name="description" th:text="${description}" cols="30" rows="10"></textarea>
+                    <textarea class="form-control" id="description" name="description"
+                              style="display:none;" th:text="${description}"
+                              cols="30" rows="10"
+                    ></textarea>
                 </div>
+                <script type="text/javascript">
+                    $(function() {
+                        var editor = editormd("question-editor", {
+                            width  : "100%",
+                            height : 350,
+                            path   : "js/lib/",
+                            watch : false ,
+                            placeholder : "输入关于问题的描述...",
+                            imageUpload    : true,
+                            imageFormats   : ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+                            imageUploadURL : "/file/upload"
+                        });
+                    });
+                </script>
 
                 <!--添加标签-->
                 <div class="form-group">

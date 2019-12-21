@@ -30,7 +30,7 @@ function comment2target(targetId,type,content) {
         success:function (response) {
             if(response.code == 200){ //成功
                 window.location.reload();
-                //$("#comment_section").hide();
+                $("#comment_section").hide();
             }else {
                 if(response.code == 2002){
                     var accept = window.confirm(response.message);
