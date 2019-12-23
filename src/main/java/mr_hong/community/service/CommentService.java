@@ -50,6 +50,7 @@ public class CommentService {
                 //回复问题,comment.getType() == CommentTypeEnum.QUESTION.getType()
                 Question question = questionMapper.getQuestionById(comment.getParentId());
                 if (question != null){
+                    comment.setCommentCount(0);
                     commentMapper.Insert(comment);
                     question.setCommentCount(1);
                     questionMapper.updateCommentCount(question);
@@ -64,13 +65,17 @@ public class CommentService {
         return true;
     }
 
-    private void createNotify(Comment comment, Integer commentator, String notifyName, String notifyTitle, NotificationTypeEnum notificationTypeEnum, Integer outerId) {
+    private void createNotify(Comment comment, Integer receiver, String notifyName, String notifyTitle, NotificationTypeEnum notificationTypeEnum, Integer outerId) {
+        //自己回复自己不需要提示通知
+        if(receiver == comment.getCommentator()){
+            return;
+        }
         Notification notification = new Notification();
         notification.setType(notificationTypeEnum.getType());
         notification.setGmtCreate(System.currentTimeMillis());
         notification.setNotifier(comment.getCommentator());
         notification.setOuterId(outerId);
-        notification.setReceiver(commentator);
+        notification.setReceiver(receiver);
         notification.setStatus(NotificationStatusEnum.UNREAD.getStatus());
         notification.setNotifierName(notifyName);
         notification.setNotifyTitle(notifyTitle);

@@ -14,6 +14,8 @@ import java.util.UUID;
 
 @Controller
 public class FileController {
+    @Value("${file.staticAccessPath}")
+    private String staticAccessPath;
     @Value("${file.uploadFolder}")
     private String imgPath;
 
@@ -24,7 +26,7 @@ public class FileController {
         FileDto fileDto = new FileDto();
         if (!file.isEmpty()) {
             String filename = file.getOriginalFilename();
-            String filePath = imgPath + "/" + UUID.randomUUID().toString() + "-" + filename;
+            String filePath = imgPath + "/" + filename;
             try {
                 BufferedOutputStream out = new BufferedOutputStream(
                         new FileOutputStream(new File(filePath)));
@@ -32,7 +34,7 @@ public class FileController {
                 out.flush();
                 out.close();
                 fileDto.setSuccess(1);
-                fileDto.setUrl(filePath);
+                fileDto.setUrl(staticAccessPath  + filename);
                 return fileDto;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
@@ -44,4 +46,10 @@ public class FileController {
         }
         return ResultDto.errorOf(2006, "图片上传出错!");
     }
+   /* public FileDto upload(){
+        FileDto fileDto = new FileDto();
+        fileDto.setSuccess(1);
+        fileDto.setUrl(staticAccessPath+"xiyang.jpg");
+        return fileDto;
+    }*/
 }

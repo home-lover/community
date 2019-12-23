@@ -2,6 +2,7 @@ package mr_hong.community.service;
 
 import mr_hong.community.dto.PageDto;
 import mr_hong.community.dto.QuestionDto;
+import mr_hong.community.dto.QuestionQueryDto;
 import mr_hong.community.exception.CustomizeException;
 import mr_hong.community.exception.ErrorCode;
 import mr_hong.community.mapper.QuestionMapper;
@@ -132,7 +133,7 @@ public class QuestionService {
 
     public List<QuestionDto> selectRelated(QuestionDto queryDto) {
         String []tags = StringUtils.split(queryDto.getTag(),",");
-        String regexpTags = Arrays.stream(tags).collect(Collectors.joining("|"));
+        String regexpTags = Arrays.stream(tags).collect(Collectors.joining("|"));//数据库中“或”的匹配
         Question question = new Question();
         question.setId(queryDto.getId());
         question.setTag(regexpTags);
@@ -143,5 +144,49 @@ public class QuestionService {
             return questionDto;
         }).collect(Collectors.toList());
         return questionDtos;
+    }
+
+    public PageDto listQuestionByKeyWord(String search, Integer page, Integer size) {
+        PageDto pageDto = new PageDto();
+        if (StringUtils.isNotBlank(search)) {
+            String[] tags = StringUtils.split(search, " ");
+            search = Arrays
+                    .stream(tags)
+                    .filter(StringUtils::isNotBlank)
+                    .map(t -> t.replace("+", "").replace("*", "").replace("?", ""))
+                    .filter(StringUtils::isNotBlank)
+                    .collect(Collectors.joining("|"));
+        }
+
+        Integer totalCount = questionMapper.countBySearch(search);
+        Integer totalPage;
+        if(totalCount % size == 0){
+            totalPage = totalCount/size;
+        }else{
+            totalPage = totalCount/size +1;
+        }
+        if(page < 1){
+            page = 1;
+        }
+        if(page > totalPage){
+            page = totalPage;
+        }
+        pageDto.setPagination(totalPage,page);
+
+        //分页实现,每一次都会从前端获取一个page,到HelloController更新page查询。
+        Integer offset = size*(page-1);
+        List<Question> questions = questionMapper.listBySearch(search,offset,size);
+        List<QuestionDto> questionDtoList = new ArrayList<>();
+        //将question里的每个属性对应到questionDto
+        for (Question question : questions) {
+            User user = userMapper.findById(question.getCreator());
+            QuestionDto questionDto = new QuestionDto();
+            BeanUtils.copyProperties(question,questionDto);
+            questionDto.setUser(user);
+            questionDtoList.add(questionDto);
+        }
+        pageDto.setQuestions(questionDtoList);
+
+        return pageDto;
     }
 }

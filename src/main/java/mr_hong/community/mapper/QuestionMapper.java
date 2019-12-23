@@ -1,5 +1,6 @@
 package mr_hong.community.mapper;
 
+import mr_hong.community.dto.QuestionQueryDto;
 import mr_hong.community.model.Question;
 import org.apache.ibatis.annotations.*;
 
@@ -36,4 +37,10 @@ public interface QuestionMapper {
 
     @Select("select * from question where id != #{id} and tag regexp #{tag}")
     List<Question> selectRelated(Question question);
+
+    @Select("select count(*) from question where title regexp #{search}")
+    Integer countBySearch(String search);
+
+    @Select("select * from question where title = #{search} order by gmt_create desc limit #{offset},#{size}")
+    List<Question> listBySearch(String search, Integer offset, Integer size);
 }

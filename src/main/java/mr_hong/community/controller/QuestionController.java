@@ -35,10 +35,11 @@ public class QuestionController {
         List<QuestionDto> relatedQuestions = questionService.selectRelated(questionDto);
         List<CommentDto> comments = commentService.ListByQuestionId(id);
 
-
         model.addAttribute("question",questionDto);
         model.addAttribute("comments",comments);
         model.addAttribute("relatedQuestions",relatedQuestions);
         return "question";
     }
+
+
 }
