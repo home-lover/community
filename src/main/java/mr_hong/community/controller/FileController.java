@@ -14,13 +14,13 @@ import java.util.UUID;
 
 @Controller
 public class FileController {
-    @Value("${web.img-path}")
+    @Value("${file.uploadFolder}")
     private String imgPath;
 
 
     @RequestMapping("/file/upload")
     @ResponseBody
-    public ResultDto<FileDto> upload(@RequestParam("editormd-image-file") MultipartFile file) {
+    public Object upload(@RequestParam("editormd-image-file") MultipartFile file) {
         FileDto fileDto = new FileDto();
         if (!file.isEmpty()) {
             String filename = file.getOriginalFilename();
@@ -33,7 +33,7 @@ public class FileController {
                 out.close();
                 fileDto.setSuccess(1);
                 fileDto.setUrl(filePath);
-                return ResultDto.okOf(fileDto);
+                return fileDto;
             } catch (FileNotFoundException e) {
                 e.printStackTrace();
                 return ResultDto.errorOf(2006, "图片上传出错");
