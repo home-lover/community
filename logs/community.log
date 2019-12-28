@@ -1,0 +1,105 @@
+2019-12-28 15:17:31.193  INFO 13176 --- [main] mr_hong.community.CommunityApplication   : Starting CommunityApplication on WIN-JT860CF4C8E with PID 13176 (G:\java\IdeaProjects\community\target\classes started by 红先生 in G:\java\IdeaProjects\community)
+2019-12-28 15:17:31.197  INFO 13176 --- [main] mr_hong.community.CommunityApplication   : No active profile set, falling back to default profiles: default
+2019-12-28 15:17:32.061  INFO 13176 --- [main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.ws.config.annotation.DelegatingWsConfiguration' of type [org.springframework.ws.config.annotation.DelegatingWsConfiguration$$EnhancerBySpringCGLIB$$b25aa722] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying)
+2019-12-28 15:17:32.109  INFO 13176 --- [main] .w.s.a.s.AnnotationActionEndpointMapping : Supporting [WS-Addressing August 2004, WS-Addressing 1.0]
+2019-12-28 15:17:32.335  INFO 13176 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port(s): 8080 (http)
+2019-12-28 15:17:32.344  INFO 13176 --- [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2019-12-28 15:17:32.344  INFO 13176 --- [main] org.apache.catalina.core.StandardEngine  : Starting Servlet engine: [Apache Tomcat/9.0.27]
+2019-12-28 15:17:32.436  INFO 13176 --- [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2019-12-28 15:17:32.437  INFO 13176 --- [main] o.s.web.context.ContextLoader            : Root WebApplicationContext: initialization completed in 1185 ms
+2019-12-28 15:17:32.782  INFO 13176 --- [main] o.s.s.concurrent.ThreadPoolTaskExecutor  : Initializing ExecutorService 'applicationTaskExecutor'
+2019-12-28 15:17:32.841  INFO 13176 --- [main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page template: index
+2019-12-28 15:17:33.070  INFO 13176 --- [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+2019-12-28 15:17:33.073  INFO 13176 --- [main] mr_hong.community.CommunityApplication   : Started CommunityApplication in 2.306 seconds (JVM running for 3.598)
+2019-12-28 15:17:35.994  INFO 13176 --- [http-nio-8080-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-12-28 15:17:35.994  INFO 13176 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2019-12-28 15:17:36.000  INFO 13176 --- [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 6 ms
+2019-12-28 15:17:36.026  INFO 13176 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2019-12-28 15:17:36.167  INFO 13176 --- [http-nio-8080-exec-1] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2019-12-28 15:17:36.174 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.mapper.UserMapper.findByToken        : ==>  Preparing: select * from user where token = ? 
+2019-12-28 15:17:36.193 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.mapper.UserMapper.findByToken        : ==> Parameters: ae515203-f812-4311-9015-25186b61889e(String)
+2019-12-28 15:17:36.210 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.mapper.UserMapper.findByToken        : <==      Total: 1
+2019-12-28 15:17:36.219 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.m.NotificationMapper.unreadCount     : ==>  Preparing: select count(1) from notification where receiver = ? and status = 0 
+2019-12-28 15:17:36.221 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.m.NotificationMapper.unreadCount     : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.227 DEBUG 13176 --- [http-nio-8080-exec-1] m.c.m.NotificationMapper.unreadCount     : <==      Total: 1
+2019-12-28 15:17:36.243 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.count  : ==>  Preparing: select count(1) from question 
+2019-12-28 15:17:36.243 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.count  : ==> Parameters: 
+2019-12-28 15:17:36.245 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.count  : <==      Total: 1
+2019-12-28 15:17:36.246 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.list   : ==>  Preparing: select * from question order by gmt_create desc limit ?,? 
+2019-12-28 15:17:36.248 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.list   : ==> Parameters: 0(Integer), 5(Integer)
+2019-12-28 15:17:36.253 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.QuestionMapper.list   : <==      Total: 5
+2019-12-28 15:17:36.254 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:17:36.254 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.255 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:17:36.261 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:17:36.261 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.263 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:17:36.264 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:17:36.264 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.265 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:17:36.266 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:17:36.266 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.267 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:17:36.267 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:17:36.268 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.269 DEBUG 13176 --- [http-nio-8080-exec-1] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:17:36.603 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.mapper.UserMapper.findByToken        : ==>  Preparing: select * from user where token = ? 
+2019-12-28 15:17:36.604 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.mapper.UserMapper.findByToken        : ==> Parameters: ae515203-f812-4311-9015-25186b61889e(String)
+2019-12-28 15:17:36.605 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.mapper.UserMapper.findByToken        : <==      Total: 1
+2019-12-28 15:17:36.605 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.m.NotificationMapper.unreadCount     : ==>  Preparing: select count(1) from notification where receiver = ? and status = 0 
+2019-12-28 15:17:36.605 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.m.NotificationMapper.unreadCount     : ==> Parameters: 546(Integer)
+2019-12-28 15:17:36.606 DEBUG 13176 --- [http-nio-8080-exec-2] m.c.m.NotificationMapper.unreadCount     : <==      Total: 1
+2019-12-28 15:18:12.486 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.mapper.UserMapper.findByToken        : ==>  Preparing: select * from user where token = ? 
+2019-12-28 15:18:12.487 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.mapper.UserMapper.findByToken        : ==> Parameters: ae515203-f812-4311-9015-25186b61889e(String)
+2019-12-28 15:18:12.488 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.mapper.UserMapper.findByToken        : <==      Total: 1
+2019-12-28 15:18:12.488 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.m.NotificationMapper.unreadCount     : ==>  Preparing: select count(1) from notification where receiver = ? and status = 0 
+2019-12-28 15:18:12.489 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.m.NotificationMapper.unreadCount     : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.489 DEBUG 13176 --- [http-nio-8080-exec-4] m.c.m.NotificationMapper.unreadCount     : <==      Total: 1
+2019-12-28 15:18:12.490 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.count  : ==>  Preparing: select count(1) from question 
+2019-12-28 15:18:12.490 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.count  : ==> Parameters: 
+2019-12-28 15:18:12.491 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.count  : <==      Total: 1
+2019-12-28 15:18:12.491 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.list   : ==>  Preparing: select * from question order by gmt_create desc limit ?,? 
+2019-12-28 15:18:12.491 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.list   : ==> Parameters: 0(Integer), 5(Integer)
+2019-12-28 15:18:12.493 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.QuestionMapper.list   : <==      Total: 5
+2019-12-28 15:18:12.493 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:12.495 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.496 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:12.497 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:12.497 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.498 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:12.498 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:12.498 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.498 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:12.499 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:12.499 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.500 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:12.501 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:12.502 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:12.503 DEBUG 13176 --- [http-nio-8080-exec-4] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:28.187 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.mapper.UserMapper.findByToken        : ==>  Preparing: select * from user where token = ? 
+2019-12-28 15:18:28.188 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.mapper.UserMapper.findByToken        : ==> Parameters: ae515203-f812-4311-9015-25186b61889e(String)
+2019-12-28 15:18:28.189 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.mapper.UserMapper.findByToken        : <==      Total: 1
+2019-12-28 15:18:28.190 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.m.NotificationMapper.unreadCount     : ==>  Preparing: select count(1) from notification where receiver = ? and status = 0 
+2019-12-28 15:18:28.190 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.m.NotificationMapper.unreadCount     : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.191 DEBUG 13176 --- [http-nio-8080-exec-10] m.c.m.NotificationMapper.unreadCount     : <==      Total: 1
+2019-12-28 15:18:28.192 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.count  : ==>  Preparing: select count(1) from question 
+2019-12-28 15:18:28.192 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.count  : ==> Parameters: 
+2019-12-28 15:18:28.193 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.count  : <==      Total: 1
+2019-12-28 15:18:28.193 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.list   : ==>  Preparing: select * from question order by gmt_create desc limit ?,? 
+2019-12-28 15:18:28.194 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.list   : ==> Parameters: 0(Integer), 5(Integer)
+2019-12-28 15:18:28.195 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.QuestionMapper.list   : <==      Total: 5
+2019-12-28 15:18:28.195 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:28.196 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.197 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:28.197 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:28.197 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.199 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:28.199 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:28.199 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.200 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:28.200 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:28.200 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.201 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : <==      Total: 1
+2019-12-28 15:18:28.201 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==>  Preparing: select * from user where id = ? 
+2019-12-28 15:18:28.201 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : ==> Parameters: 546(Integer)
+2019-12-28 15:18:28.201 DEBUG 13176 --- [http-nio-8080-exec-10] m.community.mapper.UserMapper.findById   : <==      Total: 1

@@ -1,5 +1,7 @@
 package mr_hong.community.controller;
 
+import lombok.extern.java.Log;
+import lombok.extern.slf4j.Slf4j;
 import mr_hong.community.dto.AccessTokenDto;
 import mr_hong.community.dto.GithubUser;
 import mr_hong.community.mapper.UserMapper;
@@ -18,6 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.UUID;
 
 @Controller
+@Slf4j
 public class AuthorizeController {
     @Autowired
     private GithubProvider githubProvider;
@@ -66,6 +69,7 @@ public class AuthorizeController {
             return "redirect:/"; //跳转回首页，并且不显示地址栏
         }else{
             //登陆失败，重新登录
+            log.debug("callback get github error:{}",githubUser);
             return "redirect:/";
         }
     }

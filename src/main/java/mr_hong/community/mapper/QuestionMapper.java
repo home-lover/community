@@ -41,6 +41,6 @@ public interface QuestionMapper {
     @Select("select count(*) from question where title regexp #{search}")
     Integer countBySearch(String search);
 
-    @Select("select * from question where title = #{search} order by gmt_create desc limit #{offset},#{size}")
+    @Select("select * from question where title regexp #{search} order by gmt_create desc limit #{offset},#{size}")
     List<Question> listBySearch(String search, Integer offset, Integer size);
 }

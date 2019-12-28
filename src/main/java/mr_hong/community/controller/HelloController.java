@@ -31,13 +31,15 @@ public class HelloController {
                         @RequestParam(name = "size",defaultValue = "5") Integer size,
                         @RequestParam(name = "search",required = false) String search,
                         HttpServletRequest request){
+
         if(search != null){
             PageDto pagination = questionService.listQuestionByKeyWord(search,page,size);
-            model.addAttribute("pagination",pagination);
-            model.addAttribute("search",search);
-        }else {
+           model.addAttribute("pagination",pagination);
+           model.addAttribute("search",search);
+        }
+        if(search==null || search==""){
             PageDto pagination = questionService.list(page,size);
-            model.addAttribute("pagination",pagination);
+           model.addAttribute("pagination",pagination);
         }
         return "index"; //会去找hello这个HTML文件
     }
